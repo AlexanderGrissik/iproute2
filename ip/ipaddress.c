@@ -70,7 +70,7 @@ static void usage(void)
 	fprintf(stderr, "           [-]tentative | [-]deprecated | [-]dadfailed | temporary |\n");
 	fprintf(stderr, "           CONFFLAG-LIST ]\n");
 	fprintf(stderr, "CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG\n");
-	fprintf(stderr, "CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]\n");
+	fprintf(stderr, "CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin | optimistic ]\n");
 	fprintf(stderr, "LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]\n");
 	fprintf(stderr, "LFT := forever | SECONDS\n");
 	fprintf(stderr, "TYPE := { vlan | veth | vcan | vxcan | dummy | ifb | macvlan | macvtap |\n");
@@ -2185,6 +2185,8 @@ static int ipaddr_modify(int cmd, int flags, int argc, char **argv)
 			ifa_flags |= IFA_F_HOMEADDRESS;
 		} else if (strcmp(*argv, "nodad") == 0) {
 			ifa_flags |= IFA_F_NODAD;
+		} else if (strcmp(*argv, "optimistic") == 0) {
+			ifa_flags |= IFA_F_OPTIMISTIC;
 		} else if (strcmp(*argv, "mngtmpaddr") == 0) {
 			ifa_flags |= IFA_F_MANAGETEMPADDR;
 		} else if (strcmp(*argv, "noprefixroute") == 0) {
